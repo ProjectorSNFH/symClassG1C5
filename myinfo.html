@@ -1,0 +1,50 @@
+<!-- myinfo.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>내 정보 - 학급 사이트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">🎓</div>
+    <nav class="menu">
+      <a href="Dashboard.html">대시보드</a>
+      <a href="board.html">게시판</a>
+      <a href="datacenter.html">데이터 센터</a>
+    </nav>
+    <div class="user-info">
+      <div class="user-button" id="userButton">3번 이재원 ▾
+        <div class="user-menu" id="userMenu">
+          <a href="myinfo.html">내 정보</a>
+          <a href="#">로그아웃</a>
+          <a href="adminpanel.html" id="adminLink" style="display: none;">데이터 관리</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section">
+      <h2>내 정보</h2>
+      <div class="info-card">
+        <img src="account.png" alt="계정 이미지" class="profile-image">
+        <div><b>이름:</b> 이재원</div>
+        <div><b>학번:</b> 3번</div>
+        <div><b>아이디:</b> sym3</div>
+        <div><b>비밀번호:</b> 빠른 시간내에 제공하겠습니다.</div>
+        <div><b>시스템 권한:</b> <span id="roleText"></span></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="footer">
+    &copy; All right reserved. 선유중학교 seonyoo.ms.kr
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

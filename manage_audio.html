@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>데이터센터 - 오디오 관리</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: url('DATABG.jpg') no-repeat center center fixed;
+        }
+
+        main {
+            max-width: 2000px;
+            padding: 30px;
+            text-align: center;
+            min-width: 400px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 0;
+            width: 100px;
+            height: 30px;
+        }
+
+        button.delete {
+            background: linear-gradient(135deg, #eb74ae, #e09393);
+            width: 60px;
+            height: 50px;
+        }
+
+        button.delete-selected {
+            background: linear-gradient(135deg, #eb8a74, #e06c6c);
+            width: 60px;
+            height: 50px;
+        }
+
+        button.edit {
+            background: linear-gradient(135deg, #cfeb74, #9ce093);
+            width: 60px;
+            height: 50px;
+        }
+
+        button.delete:hover {
+            background: linear-gradient(135deg, #e636b1, #de4f4f);
+        }
+
+        button.delete-selected:hover {
+            background: linear-gradient(135deg, #c34626, #b51b1b);
+            color: #e5e5e5;
+        }
+
+        button.edit:hover {
+            background: linear-gradient(135deg, #d4e636, #56de4f);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 0px;
+            border: 1px solid #ccc;
+        }
+
+        .data-table th {
+            background-color: #0077cc;
+            color: white;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="adminpanel.html" class="back-link">&lt; 데이터 관리 홈으로</a>
+        </div>
+        <div class="user-info">
+            <div class="user-button" id="userButton">3번 이재원 ▾
+                <div class="user-menu" id="userMenu">
+                    <a href="#">로그아웃</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2>게시판 및 대시보드</h2>
+        <div style="display: flex;">
+            <button>추가</button>
+            <button>선택 모드</button>
+            <button class="delete-selected" style="width: 150px; height: 30px;" hidden>선택항목 삭제</button>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>파일명</th>
+                    <th>파일</th>
+                    <th>업로더</th>
+                    <th>업로드 날짜</th>
+                    <th style="width: 150px;">관리</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
+
+    <div class="footer">
+        &copy; All right reserved. 선유중학교 seonyoo.ms.kr
+    </div>
+
+    <script src="script.js"></script>
+    <script src="manage_audio.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const role = window.userRole;
+            console.log(window.userRole);
+
+            const path = location.pathname;
+            const page = path.substring(path.lastIndexOf("/") + 1);
+
+            const pageToRoleMap = {
+                "manage_audio.html": "DTM_A",
+                "manage_image.html": "DTM_I",
+                "manage_other.html": "DTM_O",
+                "manage_bdm.html": "BDM"
+            };
+
+            // 예외 처리: 총관리자 허용
+            if (role === "ADM") return;
+
+            // 페이지에 해당하는 권한
+            const requiredRole = pageToRoleMap[page];
+
+            // 페이지가 역할 요구하고 현재 사용자 역할이 다르면 이동
+            if (requiredRole && role !== requiredRole) {
+                if (role === "NAS") {
+                    alert("접근 권한이 없습니다.");
+                    location.href = "Dashboard.html";
+                } else if (!role || role === "undefined") {
+                    alert("로그인이 필요합니다.");
+                    location.href = "Locked.html";
+                } else {
+                    alert("접근 권한이 없습니다.");
+                    location.href = "adminpanel.html";
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

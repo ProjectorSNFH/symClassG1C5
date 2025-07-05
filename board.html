@@ -1,0 +1,76 @@
+<!-- board.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>게시판 - 학급 사이트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="main-header">
+    <div class="logo">🎓</div>
+    <nav class="menu">
+      <a href="Dashboard.html">대시보드</a>
+      <a href="board.html" class="active">게시판</a>
+      <a href="datacenter.html">데이터 센터</a>
+    </nav>
+    <div class="user-info">
+      <div class="user-button" id="userButton">3번 이재원 ▾
+        <div class="user-menu" id="userMenu">
+          <a href="myinfo.html">내 정보</a>
+          <a href="#">로그아웃</a>
+          <a href="adminpanel.html" id="adminLink" style="display: none;">데이터 관리</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section">
+      <h2>수행평가 및 안내 게시판</h2>
+      
+      <div class="sort-options">
+        <h5>보기 옵션</h5>
+        <div class="sort-controls">
+          <p>기준</p>
+          <select id="sort-criteria" name="sort-criteria">
+            <option value="due">기한 날짜</option>
+            <option value="created">작성일</option>
+            <option value="content">내용</option>
+          </select>
+          <p>순차</p>
+          <select id="sort-order" name="sort-order">
+            <option value="asc">오름차순</option>
+            <option value="desc">내림차순</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="board-table">
+        <thead>
+          <tr>
+            <th>내용</th>
+            <th>기한 날짜</th>
+            <th>작성일</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="footer">
+    &copy; All right reserved. 선유중학교 seonyoo.ms.kr
+  </div>
+  <script src="boardData.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

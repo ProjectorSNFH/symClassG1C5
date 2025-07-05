@@ -1,0 +1,501 @@
+/*style.css*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: url('schoolImage.png') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 70vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 350px;
+  transition: transform 0.3s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-5px);
+}
+
+.login-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #74ebd5;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #5ec9c3, #9da8df);
+}
+
+/* 헤더 공통 */
+.main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 0 30px;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 28px;
+}
+
+.menu a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.menu a.active {
+  color: #0077cc;
+}
+
+.user-info {
+  position: relative;
+}
+
+.user-button {
+  cursor: pointer;
+  position: relative;
+}
+
+.user-menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px 30px;
+  width: 220px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.user-menu.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.user-info:hover .user-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.user-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.user-menu a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 14px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.user-menu a:last-child {
+  margin-bottom: 0;
+}
+
+/* 대시보드 전체 */
+main {
+  margin-top: 10vh; /* 유지 */
+  padding: 40px;
+  background: rgba(255,255,255,0.55);
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* 섹션 */
+.section {
+  margin-bottom: 50px;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  color: #0077cc;
+  border-bottom: 3px solid #0077cc;
+  padding-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+/* 수행평가 및 안내 flex */
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* 이름 목록 간격 줄임 + 자연스러운 배치 */
+.item {
+  background: #f1f1f1;
+  padding: 12px 18px;
+  border-radius: 10px;
+  flex: 1 1 auto;
+  min-width: 140px;
+  text-align: center;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+/* 시간표 및 교시 시간 디자인 개선 */
+.timetable {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.column {
+  flex: 1;
+  background: #f9faff;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  font-size: 15px;
+  color: #2c3e50;
+  line-height: 1.6;
+  user-select: none;
+}
+
+.column div {
+  margin-bottom: 14px;
+  border-bottom: 1px solid #d9e3f0;
+  padding-bottom: 6px;
+}
+
+.column div:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* 급식 메뉴 - 점심 메뉴만, 세로 배열, 배경 없음, 기본 텍스트 스타일 */
+.flex-wrap > .item:nth-child(n+2) {
+  display: none; /* 아침, 저녁 아이템 숨김 */
+}
+
+.section:nth-child(4) .flex-wrap {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section:nth-child(4) .item {
+  background: none;
+  padding: 0;
+  font-weight: 600;
+  font-size: 18px;
+  color: #34495e;
+  text-align: left;
+  min-width: auto;
+  white-space: normal;
+}
+
+/* 청소 담당 */
+.cleaning div {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #444;
+}
+.cleaning b {
+  color: #0077cc;
+  margin-right: 6px;
+}
+
+.assessment-table {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.assessment-table div {
+  background: #f9faff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  font-size: 15px;
+  color: #2c3e50;
+  user-select: none;
+}
+
+.duties-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.duties-list div {
+  background: #f1f1f1;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  min-width: 120px;
+}
+
+/* 푸터 수정 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  background: linear-gradient(to top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  user-select: none;
+}
+
+/* 게시판 테이블 디자인 */
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: #333;
+  table-layout: auto;
+  word-break: break-word;
+}
+
+.board-table th {
+  background: #0077cc;
+  color: white;
+  padding: 14px;
+  text-align: left;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.board-table td {
+  background: #f9faff;
+  padding: 20px;
+  border-bottom: 1px solid #e1e1e1;
+  vertical-align: top;
+  white-space: pre-line;
+}
+
+.board-table tr:last-child td {
+  border-bottom: none;
+}
+
+.board-table tbody tr:hover {
+  background: #eef4ff;
+  transition: background 0.3s;
+}
+
+.board-table th:nth-child(2),
+.board-table td:nth-child(2) {
+  width: 140px;
+}
+
+.board-table th:nth-child(3),
+.board-table td:nth-child(3) {
+  width: 140px;
+}
+
+.board-table td:nth-child(1) {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.datacenter-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: #333;
+  table-layout: auto;
+  word-break: break-word;
+  border-radius: 12px;
+}
+
+.datacenter-table th {
+  background: #0077cc;
+  color: white;
+  padding: 14px;
+  text-align: left;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.datacenter-table td {
+  background: #f9faff;
+  padding: 20px;
+  border-bottom: 1px solid #e1e1e1;
+  vertical-align: top;
+}
+
+.datacenter-table tr:last-child td {
+  border-bottom: none;
+}
+
+.datacenter-table tbody tr:hover {
+  background: #eef4ff;
+  transition: background 0.3s;
+}
+
+.datacenter-table th:nth-child(1),
+.datacenter-table td:nth-child(1) {
+  width: 120px;
+}
+
+.datacenter-table th:nth-child(2),
+.datacenter-table td:nth-child(2) {
+  width: 150px;
+}
+
+.file-link {
+  display: block;
+  color: #0077cc;
+  text-decoration: none;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.file-link:hover {
+  text-decoration: underline;
+}
+
+.info-card {
+  background: #f9faff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  color: #2c3e50;
+  line-height: 2;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.info-card b {
+  color: #0077cc;
+  margin-right: 8px;
+}
+
+/* 보기 옵션 컨트롤 영역 */
+.sort-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.sort-options h5 {
+  font-size: 20px;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-options p {
+  font-weight: bold;
+  margin-right: 4px;
+  font-size: 16px;
+  color: #7d7d7d;
+}
+
+.sort-options select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: white;
+  transition: border-color 0.3s ease;
+}
+
+.sort-options select:focus {
+  outline: none;
+  border-color: #0077cc;
+}

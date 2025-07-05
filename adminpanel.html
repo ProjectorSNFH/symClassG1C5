@@ -1,0 +1,131 @@
+<!-- adminpanel.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>데이터 관리 - 학급 사이트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background: url('DATABG.jpg') no-repeat center bottom scroll;
+        }
+
+        main {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .admin-section h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #0077cc;
+        }
+
+        .admin-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .admin-buttons button {
+            padding: 15px;
+            font-size: 16px;
+            background: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .admin-buttons button:hover {
+            background: #005fa3;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .back-link:hover {
+            background-color: #eee;
+        }
+
+        .back-link:active {
+            color: #0077cc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header"><!-- 헤더 왼쪽 로고 부분 -->
+        <div class="logo">
+            <a href="DashBoard.html" class="back-link">&lt; 홈</a>
+        </div>
+        <div class="user-info">
+            <div class="user-button" id="userButton">3번 이재원 ▾
+                <div class="user-menu" id="userMenu">
+                    <a href="#">로그아웃</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="admin-section">
+            <div class="admin-buttons">
+                <button onclick="location.href='manage_bdm.html'">📋 대시보드 및 게시판</button>
+                <button onclick="location.href='manage_audio.html'">🎵 데이터센터 - 오디오</button>
+                <button onclick="location.href='manage_image.html'">🖼️ 데이터센터 - 이미지</button>
+                <button onclick="location.href='manage_other.html'">📦 데이터센터 - 기타</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer">
+        &copy; All right reserved. 선유중학교 seonyoo.ms.kr
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const role = window.userRole;
+            const roleToIdMap = {
+                DTM_A: "manage_audio.html",
+                DTM_I: "manage_image.html",
+                DTM_O: "manage_other.html",
+                BDM: "manage_bdm.html"
+            };
+
+            const buttons = document.querySelectorAll(".admin-buttons button");
+
+            buttons.forEach((btn) => {
+                const target = btn.getAttribute("onclick")?.match(/'(.+?)'/)?.[1];
+                if (!target) return;
+
+                // 총관리자(ADM)은 모든 버튼 접근 가능
+                if (role === "ADM") return;
+
+                const allowedPage = roleToIdMap[role];
+
+                if (target !== allowedPage) {
+                    btn.disabled = true;
+                    btn.style.background = "#ccc";
+                    btn.style.cursor = "not-allowed";
+                    btn.style.color = "#666";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
