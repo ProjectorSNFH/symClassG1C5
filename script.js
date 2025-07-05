@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const roleEl = document.getElementById("roleCode");
-  let userRole = "NAS";
+  let userRole = "ADM";
 
   if (roleEl) {
     const rawCode = roleEl.textContent.trim();
