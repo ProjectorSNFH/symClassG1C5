@@ -2,12 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <title>내 정보 - 학급 사이트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header class="main-header">
@@ -33,11 +35,9 @@
       <h2>내 정보</h2>
       <div class="info-card">
         <img src="account.png" alt="계정 이미지" class="profile-image">
-        <div><b>이름:</b> 이재원</div>
-        <div><b>학번:</b> 3번</div>
-        <div><b>아이디:</b> sym3</div>
-        <div><b>비밀번호:</b> 빠른 시간내에 제공하겠습니다.</div>
-        <div><b>시스템 권한:</b> <span id="roleText"></span></div>
+        <p><strong>번호:</strong> <span id="userNumber"></span>번</p>
+        <p><strong>이름:</strong> <span id="userName"></span></p>
+        <p><strong>권한:</strong> <span id="userRole"></span></p>
       </div>
     </div>
   </main>
@@ -46,5 +46,27 @@
     &copy; All right reserved. 선유중학교 seonyoo.ms.kr
   </div>
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const number = localStorage.getItem("userNumber") || "???";
+      const name = localStorage.getItem("userName") || "???";
+      const roleCode = localStorage.getItem("userRole") || "없음";
+
+      const roleDisplay = {
+        ADM: "총관리자",
+        DTM_A: "데이터센터-오디오 관리",
+        DTM_I: "데이터센터-이미지 관리",
+        DTM_O: "데이터센터-기타",
+        BDM: "대시보드 및 게시판 관리자",
+        NAS: "일반 권한 학생",
+        "": "무권한"
+      };
+
+      document.getElementById("userNumber").textContent = number;
+      document.getElementById("userName").textContent = name;
+      document.getElementById("userRole").textContent = roleDisplay[roleCode] || "알 수 없음";
+    });
+  </script>
 </body>
+
 </html>

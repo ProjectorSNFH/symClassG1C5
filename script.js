@@ -108,3 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const number = localStorage.getItem("userNumber");
+    const name = localStorage.getItem("userName");
+    const userButton = document.getElementById("userButton");
+
+    if (number && name && userButton) {
+      userButton.firstChild.textContent = `${number}번 ${name} ▾`;
+    }
+  });
+
