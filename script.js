@@ -65,7 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const roleEl = document.getElementById("roleCode");
-  let userRole = "ADM";
+  let userRole = localStorage.getItem("userRole") || ""; // ✅ 저장된 권한 불러오기
+  window.userRole = userRole; // 다른 JS 파일에서도 사용할 수 있게 전역으로 설정
 
   if (roleEl) {
     const rawCode = roleEl.textContent.trim();
@@ -81,15 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (roleTextEl && typeof userRole !== "undefined") {
     roleTextEl.textContent = roleDisplay[userRole] || userRole;
   }
-
-
-  window.userRole = userRole;
   console.log(window.userRole);
   const allowedAdminRoles = ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"];
   const allAllowedRoles = [...allowedAdminRoles, "NAS"];
 
-  const isAdminPage = location.pathname.includes("adminpanel") || 
-                      location.pathname.includes("manage_");
+  const isAdminPage = location.pathname.includes("adminpanel") ||
+    location.pathname.includes("manage_");
 
   if (isAdminPage) {
     if (!allowedAdminRoles.includes(userRole)) {
@@ -109,12 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const number = localStorage.getItem("userNumber");
-    const name = localStorage.getItem("userName");
-    const userButton = document.getElementById("userButton");
+  const number = localStorage.getItem("userNumber");
+  const name = localStorage.getItem("userName");
+  const userButton = document.getElementById("userButton");
 
-    if (number && name && userButton) {
-      userButton.firstChild.textContent = `${number}번 ${name} ▾`;
-    }
-  });
+  if (number && name && userButton) {
+    userButton.firstChild.textContent = `${number}번 ${name} ▾`;
+  }
+});
 
