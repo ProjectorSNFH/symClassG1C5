@@ -52,7 +52,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const adminLink = document.getElementById("adminLink");
 
   const roleDisplay = {
@@ -64,45 +64,47 @@ document.addEventListener("DOMContentLoaded", () => {
     NAS: "일반 사용자"
   };
 
-  const roleEl = document.getElementById("roleCode");
-  let userRole = localStorage.getItem("userRole") || ""; // ✅ 저장된 권한 불러오기
-  window.userRole = userRole; // 다른 JS 파일에서도 사용할 수 있게 전역으로 설정
+  try {
+    const res = await fetch("/me");
+    if (!res.ok) throw new Error("Unauthorized");
+    const session = await res.json();
 
-  if (roleEl) {
-    const rawCode = roleEl.textContent.trim();
-    userRole = rawCode;
-    roleEl.textContent = roleDisplay[rawCode] || "없음";
-  }
+    const userRole = session.role;
+    window.userRole = userRole;
+    localStorage.setItem("userRole", userRole);
+    localStorage.setItem("userName", session.name);
+    localStorage.setItem("userNumber", session.number);
 
-  if (adminLink && ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"].includes(userRole)) {
-    adminLink.style.display = "block";
-  }
-
-  const roleTextEl = document.getElementById("roleText");
-  if (roleTextEl && typeof userRole !== "undefined") {
-    roleTextEl.textContent = roleDisplay[userRole] || userRole;
-  }
-  console.log(window.userRole);
-  const allowedAdminRoles = ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"];
-  const allAllowedRoles = [...allowedAdminRoles, "NAS"];
-
-  const isAdminPage = location.pathname.includes("adminpanel") ||
-    location.pathname.includes("manage_");
-
-  if (isAdminPage) {
-    if (!allowedAdminRoles.includes(userRole)) {
-      // 뒤로 갈 수 있으면
-      if (history.length > 1) {
-        history.back();
-      } else {
-        location.href = "https://www.google.com";
-      }
+    const roleEl = document.getElementById("roleCode");
+    if (roleEl) {
+      roleEl.textContent = roleDisplay[userRole] || "없음";
     }
-  } else {
-    if (!allAllowedRoles.includes(userRole)) {
+
+    const roleTextEl = document.getElementById("roleText");
+    if (roleTextEl) {
+      roleTextEl.textContent = roleDisplay[userRole] || userRole;
+    }
+
+    if (adminLink && ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"].includes(userRole)) {
+      adminLink.style.display = "block";
+    }
+
+    const allowedAdminRoles = ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"];
+    const allAllowedRoles = [...allowedAdminRoles, "NAS"];
+    const isAdminPage = location.pathname.includes("adminpanel") ||
+      location.pathname.includes("manage_");
+
+    if (isAdminPage && !allowedAdminRoles.includes(userRole)) {
+      alert("접근 권한이 없습니다.");
+      location.href = "adminpanel.html";
+    } else if (!allAllowedRoles.includes(userRole)) {
       alert("로그인이 필요한 서비스입니다.");
-      location.href = "Locked.html";  // 또는 로그인 페이지로
+      location.href = "Locked.html";
     }
+  } catch (err) {
+    console.warn("세션 없음 또는 인증 실패");
+    alert("로그인이 필요합니다.");
+    location.href = "Locked.html";
   }
 });
 
@@ -115,4 +117,3 @@ document.addEventListener("DOMContentLoaded", () => {
     userButton.firstChild.textContent = `${number}번 ${name} ▾`;
   }
 });
-
