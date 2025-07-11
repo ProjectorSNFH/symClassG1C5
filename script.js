@@ -99,12 +99,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       location.href = "adminpanel.html";
     } else if (!allAllowedRoles.includes(userRole)) {
       alert("로그인이 필요한 서비스입니다.");
-      location.href = "Locked.html";
+      location.href = "index.html";
     }
   } catch (err) {
     console.warn("세션 없음 또는 인증 실패");
     alert("로그인이 필요합니다.");
-    location.href = "Locked.html";
+    location.href = "index.html";
   }
 });
 
