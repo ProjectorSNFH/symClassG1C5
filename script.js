@@ -52,7 +52,22 @@ document.addEventListener('click', (e) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await fetch("/me");
+    if (!res.ok) throw new Error("not logged in");
+    const user = await res.json();
+
+    const { role, name, number } = user;
+    localStorage.setItem("userRole", role);
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userNumber", number);
+  } catch {
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userNumber");
+  }
+
   const adminLink = document.getElementById("adminLink");
 
   const roleDisplay = {
@@ -65,8 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const roleEl = document.getElementById("roleCode");
-  let userRole = localStorage.getItem("userRole") || ""; // ✅ 저장된 권한 불러오기
-  window.userRole = userRole; // 다른 JS 파일에서도 사용할 수 있게 전역으로 설정
+  let userRole = localStorage.getItem("userRole") || "";
+  window.userRole = userRole;
 
   if (roleEl) {
     const rawCode = roleEl.textContent.trim();
@@ -82,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (roleTextEl && typeof userRole !== "undefined") {
     roleTextEl.textContent = roleDisplay[userRole] || userRole;
   }
-  console.log(window.userRole);
+
   const allowedAdminRoles = ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"];
   const allAllowedRoles = [...allowedAdminRoles, "NAS"];
 
@@ -91,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (isAdminPage) {
     if (!allowedAdminRoles.includes(userRole)) {
-      // 뒤로 갈 수 있으면
       if (history.length > 1) {
         history.back();
       } else {
@@ -101,18 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     if (!allAllowedRoles.includes(userRole)) {
       alert("로그인이 필요한 서비스입니다.");
-      location.href = "Locked.html";  // 또는 로그인 페이지로
+      location.href = "Locked.html";
     }
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
   const number = localStorage.getItem("userNumber");
   const name = localStorage.getItem("userName");
   const userButton = document.getElementById("userButton");
-
   if (number && name && userButton) {
     userButton.firstChild.textContent = `${number}번 ${name} ▾`;
   }
 });
-
