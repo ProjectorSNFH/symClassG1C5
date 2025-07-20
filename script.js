@@ -62,10 +62,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     localStorage.setItem("userRole", role);
     localStorage.setItem("userName", name);
     localStorage.setItem("userNumber", number);
+
+    console.log(`로그인 성공: ${number}번 ${name} (${role}) 접속함`);
+
+    window.userRole = role;
   } catch {
     localStorage.removeItem("userRole");
     localStorage.removeItem("userName");
     localStorage.removeItem("userNumber");
+
+    window.userRole = "";
   }
 
   const adminLink = document.getElementById("adminLink");
@@ -80,22 +86,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const roleEl = document.getElementById("roleCode");
-  let userRole = localStorage.getItem("userRole") || "";
-  window.userRole = userRole;
-
   if (roleEl) {
-    const rawCode = roleEl.textContent.trim();
-    userRole = rawCode;
+    const rawCode = localStorage.getItem("userRole") || "";
     roleEl.textContent = roleDisplay[rawCode] || "없음";
   }
 
-  if (adminLink && ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"].includes(userRole)) {
-    adminLink.style.display = "block";
-  }
-
   const roleTextEl = document.getElementById("roleText");
-  if (roleTextEl && typeof userRole !== "undefined") {
-    roleTextEl.textContent = roleDisplay[userRole] || userRole;
+  if (roleTextEl && window.userRole) {
+    roleTextEl.textContent = roleDisplay[window.userRole] || window.userRole;
   }
 
   const allowedAdminRoles = ["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"];
@@ -105,17 +103,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     location.pathname.includes("manage_");
 
   if (isAdminPage) {
-    if (!allowedAdminRoles.includes(userRole)) {
-      if (history.length > 1) {
-        history.back();
-      } else {
-        location.href = "https://www.google.com";
-      }
+    if (!allowedAdminRoles.includes(window.userRole)) {
+      alert("접근 권한이 없습니다.");
+      location.href = "/";
     }
   } else {
-    if (!allAllowedRoles.includes(userRole)) {
+    if (!allAllowedRoles.includes(window.userRole)) {
       alert("로그인이 필요한 서비스입니다.");
-      location.href = "Locked.html";
+      location.href = "/";
     }
   }
 
