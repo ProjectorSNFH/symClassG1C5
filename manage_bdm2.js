@@ -1,3 +1,5 @@
+//manage_bdm2.ls
+
 document.addEventListener("DOMContentLoaded", () => {
   const defaultData = {
     duties: "",

@@ -298,43 +298,6 @@
   <script src="script.js"></script>
   <script src="manage_bdm.js"></script>
   <script src="manage_bdm2.js"></script>
-    <script src="checkOut.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const role = window.userRole;
-      console.log(window.userRole);
-
-      const path = location.pathname;
-      const page = path.substring(path.lastIndexOf("/") + 1);
-
-      const pageToRoleMap = {
-        "manage_audio.html": "DTM_A",
-        "manage_image.html": "DTM_I",
-        "manage_other.html": "DTM_O",
-        "manage_bdm.html": "BDM"
-      };
-
-      // 예외 처리: 총관리자 허용
-      if (role === "ADM") return;
-
-      // 페이지에 해당하는 권한
-      const requiredRole = pageToRoleMap[page];
-
-      // 페이지가 역할 요구하고 현재 사용자 역할이 다르면 이동
-      if (requiredRole && role !== requiredRole) {
-        if (role === "NAS") {
-          alert("접근 권한이 없습니다.");
-          location.href = "Dashboard.html";
-        } else if (!role || role === "undefined") {
-          alert("로그인이 필요합니다.");
-          location.href = "index.html";
-        } else {
-          alert("접근 권한이 없습니다.");
-          location.href = "adminpanel.html";
-        }
-      }
-    });
-  </script>
 </body>
 
 </html>

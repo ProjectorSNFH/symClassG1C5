@@ -1,3 +1,5 @@
+//manage_other.js
+
 document.addEventListener("DOMContentLoaded", () => {
   const data = [
     {

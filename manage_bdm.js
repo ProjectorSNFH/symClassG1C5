@@ -1,3 +1,5 @@
+//manage_bdm1.js
+
 document.addEventListener("DOMContentLoaded", () => {
   const data = [
     {

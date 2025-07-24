@@ -51,3 +51,12 @@ document.addEventListener('click', (e) => {
     userMenu.classList.remove('visible');
   }
 });
+
+  /*const roleDisplay = {
+    ADM: "총관리자",
+    DTM_A: "데이터센터-오디오",
+    DTM_I: "데이터센터-이미지",
+    DTM_O: "데이터센터-기타",
+    BDM: "대시보드 및 게시판 관리자",
+    NAS: "일반 사용자"
+  };*/

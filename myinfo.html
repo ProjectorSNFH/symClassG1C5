@@ -45,29 +45,7 @@
   <div class="footer">
     &copy; All right reserved. 선유중학교 seonyoo.ms.kr
   </div>
-  <script src="script.js"></script>
-    <script src="checkOut.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const number = localStorage.getItem("userNumber") || "???";
-      const name = localStorage.getItem("userName") || "???";
-      const roleCode = localStorage.getItem("userRole") || "없음";
-
-      const roleDisplay = {
-        ADM: "총관리자",
-        DTM_A: "데이터센터-오디오 관리",
-        DTM_I: "데이터센터-이미지 관리",
-        DTM_O: "데이터센터-기타",
-        BDM: "대시보드 및 게시판 관리자",
-        NAS: "일반 권한 학생",
-        "": "무권한"
-      };
-
-      document.getElementById("userNumber").textContent = number;
-      document.getElementById("userName").textContent = name;
-      document.getElementById("userRole").textContent = roleDisplay[roleCode] || "알 수 없음";
-    });
-  </script>
 </body>
+    <script src="script.js"></script>
 
 </html>

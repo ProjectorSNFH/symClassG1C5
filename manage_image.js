@@ -1,3 +1,5 @@
+//manage_image.js
+
 document.addEventListener("DOMContentLoaded", () => {
   const data = [
     {

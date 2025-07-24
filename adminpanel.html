@@ -96,37 +96,6 @@
         &copy; All right reserved. 선유중학교 seonyoo.ms.kr
     </div>
     <script src="script.js"></script>
-    <script src="checkOut.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const role = window.userRole;
-            const roleToIdMap = {
-                DTM_A: "manage_audio.html",
-                DTM_I: "manage_image.html",
-                DTM_O: "manage_other.html",
-                BDM: "manage_bdm.html"
-            };
-
-            const buttons = document.querySelectorAll(".admin-buttons button");
-
-            buttons.forEach((btn) => {
-                const target = btn.getAttribute("onclick")?.match(/'(.+?)'/)?.[1];
-                if (!target) return;
-
-                // 총관리자(ADM)은 모든 버튼 접근 가능
-                if (role === "ADM") return;
-
-                const allowedPage = roleToIdMap[role];
-
-                if (target !== allowedPage) {
-                    btn.disabled = true;
-                    btn.style.background = "#ccc";
-                    btn.style.cursor = "not-allowed";
-                    btn.style.color = "#666";
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
