@@ -99,21 +99,23 @@
         credentials: "include",
         body: JSON.stringify({ username: id, password })
       })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) {
+        .then(res => res.json().then(data => ({ res, data })))
+        .then(({ res, data }) => {
+          if (res.ok && data.success) {
             // 세션 저장됨 → 유저 정보 저장 후 Dashboard 이동
             const { name, number, role } = data.user;
             sessionStorage.setItem("studentName", name);
             sessionStorage.setItem("studentNumber", number);
             sessionStorage.setItem("studentRole", role);
             location.href = "DashBoard.html";
+          } else if (res.ok && !data.success) {
+            loginWrong(); // 아이디/비밀번호 틀림
           } else {
-            loginFail();
+            loginFail(); // 서버 에러 응답
           }
         })
         .catch(() => {
-          loginWrong();
+          loginFail(); // 연결 실패
         });
     });
 
