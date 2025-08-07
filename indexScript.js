@@ -1,4 +1,20 @@
-  document.getElementById("loginForm").addEventListener("submit", async function (e) {
+// 이미 로그인된 세션이면 대시보드로 이동
+fetch("https://symclassnodeserver.onrender.com/me", {
+  method: "GET",
+  credentials: "include"
+})
+.then(res => res.json())
+.then(data => {
+  if (data.loggedIn) {
+    // 이미 로그인 상태이므로 바로 대시보드로 이동
+    location.href = "DashBoard.html";
+  }
+})
+.catch(err => {
+  console.error("세션 확인 실패", err);
+});
+
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
     
     const username = document.getElementById("username").value;
