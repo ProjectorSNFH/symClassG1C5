@@ -29,7 +29,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       });
 
       if (!response.ok) {
-        if (response.status === 401) {
+        if (response.status === 403) {
+          loginBlock(); // 중복 로그인 차단
+        } else if (response.status === 401) {
           loginWrong(); // 아이디/비번 틀림
         } else {
           loginFail(); // 기타 에러

@@ -75,6 +75,15 @@
     </div>
   </div>
 
+  <!--서버에서 로그인 차단 모달창-->
+  <div id="loginBlockModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>로그인 시도가 차단되었습니다.</h2>
+      <p>같은 계정으로 로그인된 상태에서 로그인하게 되면 차단됩니다. 다시 시도하면 로그인됩니다.</p>
+      <button onclick="closeFModal()">확인</button>
+    </div>
+  </div>
+
   <div class="footer">
     &copy; All right reserved. 선유중학교 seonyoo.ms.kr
   </div>
@@ -96,6 +105,15 @@
 
     function closeFModal() {
       document.getElementById('loginFailModal').classList.add('hidden');
+    }
+
+    // 서버에서 로그인 차단
+    function loginBlock() {
+      document.getElementById('loginBlockModal').classList.remove('hidden');
+    }
+
+    function closeBModal() {
+      document.getElementById('loginBlockModal').classList.add('hidden');
     }
   </script>
   <script src="indexScript.js"></script>
