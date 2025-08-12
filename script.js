@@ -1,6 +1,4 @@
-//script.js
-
-const userButton = document.getElementById('userButton');
+let userButton;
 
 (async () => {
   try {
@@ -14,11 +12,14 @@ const userButton = document.getElementById('userButton');
       alert("로그인이 필요한 서비스입니다.");
       location.href = "index.html";
       return;
+    } else {
+      userButton = document.getElementById('userButton');
+      if (userButton) {
+        userButton.textContent = `${data.user.number}번 ${data.user.name} 학생`;
+      }
     }
 
-    if (userButton) {
-      userButton.textContent = `${data.user.number}번 ${data.user.name} 학생`;
-    }
+
 
     const userRole = data.user.role || "";
     const path = location.pathname;
