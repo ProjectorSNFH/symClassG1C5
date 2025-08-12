@@ -1,5 +1,7 @@
 //script.js
 
+const userButton = document.getElementById('userButton');
+
 (async () => {
   try {
     const res = await fetch("https://symclassnodeserver.onrender.com/me", {
@@ -108,8 +110,6 @@
     location.href = "";
   }
 })();
-
-const userButton = document.getElementById('userButton');
 const userMenu = document.getElementById('userMenu');
 
 let isLocked = false;
