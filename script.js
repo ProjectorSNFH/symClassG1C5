@@ -16,7 +16,7 @@
 
     const userButton = document.getElementById('userButton');
     if (userButton) {
-      userButton.textContent = `${data.user.number} ${data.user.name}`;
+      userButton.textContent = `${data.user.number}번 ${data.user.name} 학생`;
     }
 
     const userRole = data.user.role || "";
@@ -106,7 +106,7 @@
 
   } catch (err) {
     alert("세션 확인 중 문제가 발생했습니다.");
-    location.href = "index.html";
+    location.href = "";
   }
 })();
 
