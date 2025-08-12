@@ -1,4 +1,4 @@
-// script.js
+//script.js
 
 (async () => {
   try {
@@ -8,11 +8,15 @@
     });
     const data = await res.json();
 
-    // 로그인 여부 체크
     if (!data.loggedIn) {
       alert("로그인이 필요한 서비스입니다.");
       location.href = "index.html";
       return;
+    }
+
+    const userButton = document.getElementById('userButton');
+    if (userButton) {
+      userButton.textContent = `${data.user.number} ${data.user.name}`;
     }
 
     const userRole = data.user.role || "";
@@ -23,12 +27,11 @@
       if (userRole === "NAS") {
         alert("권한이 부족합니다. 대시보드로 이동합니다.");
         location.href = "DashBoard.html";
-        return;
       } else if (!["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"].includes(userRole)) {
         alert("로그인이 필요한 서비스입니다.");
         location.href = "index.html";
-        return;
       }
+      return;
     }
 
     // manage_ 페이지 접근 제한
@@ -65,7 +68,6 @@
       });
     }
 
-    // 동적 스크립트 로드 함수
     function loadScript(path) {
       const script = document.createElement("script");
       script.src = path;
@@ -73,8 +75,8 @@
       document.head.appendChild(script);
     }
 
-    // 현재 페이지에 맞는 스크립트 로드
     const filename = location.pathname.split("/").pop();
+
     switch (filename) {
       case "DashBoard.html":
         loadScript("DashData.js");
@@ -108,8 +110,9 @@
   }
 })();
 
-// const userButton = document.getElementById('userButton');
+const userButton = document.getElementById('userButton');
 const userMenu = document.getElementById('userMenu');
+
 let isLocked = false;
 
 // 호버로 열림
@@ -159,13 +162,11 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/*
-const roleDisplay = {
-  ADM: "총관리자",
-  DTM_A: "데이터센터-오디오",
-  DTM_I: "데이터센터-이미지",
-  DTM_O: "데이터센터-기타",
-  BDM: "대시보드 및 게시판 관리자",
-  NAS: "일반 사용자"
-};
-*/
+  /*const roleDisplay = {
+    ADM: "총관리자",
+    DTM_A: "데이터센터-오디오",
+    DTM_I: "데이터센터-이미지",
+    DTM_O: "데이터센터-기타",
+    BDM: "대시보드 및 게시판 관리자",
+    NAS: "일반 사용자"
+  };*/
