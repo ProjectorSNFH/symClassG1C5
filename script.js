@@ -14,7 +14,6 @@
       return;
     }
 
-    const userButton = document.getElementById('userButton');
     if (userButton) {
       userButton.textContent = `${data.user.number}번 ${data.user.name} 학생`;
     }
