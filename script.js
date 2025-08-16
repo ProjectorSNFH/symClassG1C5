@@ -23,13 +23,13 @@
     userInfo.textContent = `${data.user.number}번 ${data.user.name} ▾`;
 
     if (userRole !== "NAS" && userRole !== "") {
-      adminLink.style.display = "inline-block";
+      adminLink.style.display = "block";
     }
 
     // adminpanel.html 접근 제한
     if (path.includes("adminpanel")) {
       if (userRole === "NAS") {
-        alert("권한이 부족합니다. 대시보드로 이동합니다.");
+        alert("이 페이지를 이용할 수 없는 권한입니다.. 대시보드로 이동합니다.");
         location.href = "DashBoard.html";
       } else if (!["ADM", "DTM_A", "DTM_I", "DTM_O", "BDM"].includes(userRole)) {
         alert("로그인이 필요한 서비스입니다.");
@@ -120,7 +120,7 @@
 
   } catch (err) {
     alert("세션 확인 중 문제가 발생했습니다.");
-    location.href = "";
+    location.href = "/";
   }
 })();
 
