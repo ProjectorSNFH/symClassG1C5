@@ -13,10 +13,7 @@ let userButton;
       location.href = "index.html";
       return;
     } else {
-      userButton = document.getElementById('userButton');
-      if (userButton) {
-        userButton.textContent = `${data.user.number}번 ${data.user.name} 학생`;
-      }
+      //로그인 성공시 로딩
     }
 
 
