@@ -20,8 +20,8 @@
 
     const userRole = data.user.role || "";
     const path = location.pathname;
-    const userButton = document.getElementById('userButton');
-    userButton.textContent = `${data.user.number}번 ${data.user.name} ▾`;
+    const userInfo = document.getElementById('userInfo');
+    userInfo.textContent = `${data.user.number}번 ${data.user.name} ▾`;
 
     // adminpanel.html 접근 제한
     if (path.includes("adminpanel")) {
