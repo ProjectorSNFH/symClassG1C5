@@ -74,9 +74,9 @@
       const studentAuth = document.getElementById('studentAuth');
       const studentNum = document.getElementById('studentNum');
       const studentName = document.getElementById('studentName');
-      studentAuth.textContent = `${data.user.userRole}`;
+      studentAuth.textContent = `${userRole}`;
       studentNum.textContent = `${data.user.number}번`;
-      studentName.textContent = `환영합니다, ${userRole}님`;
+      studentName.textContent = `환영합니다, ${data.user.name}님`;
     }
     
     function loadScript(path) {
