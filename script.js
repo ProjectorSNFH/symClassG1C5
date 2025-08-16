@@ -73,7 +73,7 @@
       const studentName = document.getElementById('studentName');
       studentAuth.textContent = `${data.user.userRole}`;
       studentNum.textContent = `${data.user.number}번`;
-      studentName.textContent = `${data.user.name}님`;
+      studentName.textContent = `환영합니다, ${data.user.name}님`;
     }
     
     function loadScript(path) {
