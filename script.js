@@ -20,6 +20,8 @@
 
     const userRole = data.user.role || "";
     const path = location.pathname;
+    const userButton = document.getElementById('userButton');
+    userButton.textContent = `${data.user.number}번 ${data.user.name} ▾`;
 
     // adminpanel.html 접근 제한
     if (path.includes("adminpanel")) {
@@ -67,13 +69,14 @@
       });
     }
 
+    //내 정보 페이지 데이터 표시
     if (path.includes("myinfo.html")) {
       const studentAuth = document.getElementById('studentAuth');
       const studentNum = document.getElementById('studentNum');
       const studentName = document.getElementById('studentName');
       studentAuth.textContent = `${data.user.userRole}`;
       studentNum.textContent = `${data.user.number}번`;
-      studentName.textContent = `환영합니다, ${data.user.name}님`;
+      studentName.textContent = `환영합니다, ${userRole}님`;
     }
     
     function loadScript(path) {
