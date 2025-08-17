@@ -10,6 +10,7 @@
 
     if (!data.loggedIn) {
       alert("로그인이 필요한 서비스입니다.");
+      loggingOut();
       location.href = "index.html";
       return;
     } else {
@@ -62,14 +63,18 @@
     const logoutLink = document.querySelector("a[href='logout']");
     if (logoutLink) {
       logoutLink.addEventListener("click", async (e) => {
-        e.preventDefault();
-        await fetch("https://symclassnodeserver.onrender.com/logout", {
-          method: "POST",
-          credentials: "include"
-        });
-        sessionStorage.clear();
-        location.href = "index.html";
+        loggingOut();
       });
+    }
+
+    async function loggingOut() {
+      e.preventDefault();
+      await fetch("https://symclassnodeserver.onrender.com/logout", {
+        method: "POST",
+        credentials: "include"
+      });
+      sessionStorage.clear();
+      location.href = "index.html";
     }
 
     //내 정보 페이지 데이터 표시
