@@ -1,3 +1,5 @@
+//script4design.js(script for design aspect javascript)
+
 
 const userMenu = document.getElementById('userMenu');
 const userButton = document.getElementById('userButton');
