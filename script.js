@@ -10,7 +10,11 @@
 
     if (!data.loggedIn) {
       alert("로그인이 필요한 서비스입니다.");
-      loggingOut();
+      // 서버 로그아웃 호출 (세션 파괴)
+      await fetch("https://symclassnodeserver.onrender.com/logout", {
+        method: "POST",
+        credentials: "include"
+      });
       location.href = "index.html";
       return;
     } else {
@@ -63,18 +67,14 @@
     const logoutLink = document.querySelector("a[href='logout']");
     if (logoutLink) {
       logoutLink.addEventListener("click", async (e) => {
-        loggingOut();
+        e.preventDefault();
+        await fetch("https://symclassnodeserver.onrender.com/logout", {
+          method: "POST",
+          credentials: "include"
+        });
+        sessionStorage.clear();
+        location.href = "index.html";
       });
-    }
-
-    async function loggingOut() {
-      e.preventDefault();
-      await fetch("https://symclassnodeserver.onrender.com/logout", {
-        method: "POST",
-        credentials: "include"
-      });
-      sessionStorage.clear();
-      location.href = "index.html";
     }
 
     //내 정보 페이지 데이터 표시
@@ -128,6 +128,29 @@
     location.href = "/";
   }
 })();
+
+// 자동 로그아웃 체크
+setInterval(async () => {
+  try {
+    const res = await fetch("https://symclassnodeserver.onrender.com/me", {
+      method: "GET",
+      credentials: "include"
+    });
+    const data = await res.json();
+
+    if (!data.loggedIn) {
+      alert("로그인이 필요한 서비스입니다.");
+      // 서버 로그아웃 호출 (세션 파괴)
+      await fetch("https://symclassnodeserver.onrender.com/logout", {
+        method: "POST",
+        credentials: "include"
+      });
+      location.href = "index.html";
+    }
+  } catch (err) {
+    console.error("세션 체크 중 오류:", err);
+  }
+}, 10000); // 10초마다 확인
 
 /*const roleDisplay = {
   ADM: "총관리자",
