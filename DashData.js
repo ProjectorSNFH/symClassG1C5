@@ -3,24 +3,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 더미 데이터 정의
   const assessments = [
-    { content: "국어 수행평가 준비", created: "2025-06-30" },
-    { content: "수학 공지: 다음주 시험", created: "2025-06-20" },
-    { content: "과학 프로젝트 발표", created: "2025-06-19" },
-    { content: "영어 말하기 대회", created: "2025-06-18" }
+    { content: "수학 수행평가", created: "2025-08-19" }
   ];
 
   const duties = [
-    { num: 1, name: "이재원" },
-    { num: 2, name: "김민수" },
-    { num: 3, name: "박지훈" }
+    { num: 16, name: "하 윤" },
+    { num: 21, name: "황윤성" }
   ];
 
-  const lunchMenu = ["현미밥", "소고기국", "마라탕", "꿰바로우"];
+  const lunchMenu = ["현미밥","육개장","춘천식닭갈비","담양버섯떡갈비","배추김치",'포도'];
 
   const cleaning = {
-    late: [3, 5, 6],
+    late: [3],
     sweep: [1, 2],
-    wipe: [4, 7]
+    wipe: [3, 4]
   };
 
   // 정렬: 생성일 기준 내림차순

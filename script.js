@@ -43,6 +43,8 @@
       return;
     }
 
+    console.log(userRole);
+
     // manage_ 페이지 접근 제한
     if (path.includes("manage_")) {
       if (path.includes("manage_audio") && userRole !== "DTM_A" && userRole !== "ADM") {
@@ -124,6 +126,8 @@ setInterval(async () => {
     console.error("세션 체크 중 오류:", err);
   }
 }, 10000); // 10초마다 확인
+
+
 
 /*const roleDisplay = {
   ADM: "총관리자",

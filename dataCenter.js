@@ -4,39 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = [
         {
             uploader: "이재원",
-            uploadDate: "2025-06-20",
-            fileName: "과학 프로젝트 자료.zip",
-            description: "형식: 실험 결과보고서 포함",
+            uploadDate: "2025-08-19",
+            fileName: "영어듣기 파일.zip",
+            fileDisplay: "영어듣기 파일, 시험지, 답지 포함",
             type: "other"
         },
         {
-            uploader: "김민수",
-            uploadDate: "2025-06-21",
-            fileName: "수학 추가문제.pdf",
-            description: "5단원 심화 문제",
-            type: "other"
-        },
-        {
-            uploader: "박지훈",
-            uploadDate: "2025-06-22",
-            fileName: "국어 발표자료.pptx",
-            description: "조별 발표용 PPT",
-            type: "other"
-        },
-        {
-            uploader: "최수연",
-            uploadDate: "2025-06-19",
-            fileName: "듣기평가_6월.mp3",
-            description: "영어 듣기 자료",
-            type: "audio"
-        },
-        {
-            uploader: "한지원",
-            uploadDate: "2025-06-23",
-            fileName: "역사 이미지 자료.png",
-            description: "시대별 유물 이미지",
+            uploader: "조재형",
+            uploadDate: "2025-08-19",
+            fileName: "황재용 얼굴.png",
+            fileDisplay: "와ㅏㅏㅅ따",
             type: "image"
-        }
+        },
     ];
 
     const tbody = document.querySelector(".datacenter-table tbody");
@@ -90,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>
           <a href="#" class="file-link">
             ${item.fileName}<br>
-            (${item.description})
+            (${item.fileDisplay})
           </a>
         </td>
       `;

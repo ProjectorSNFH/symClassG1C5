@@ -5,19 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const boardItems = [
     {
-      content: "국어 수행평가 준비\n형식: 발표 / 준비물: PPT",
-      dueDate: "2025-06-25",
-      createdDate: "2025-06-20",
+      content: "수학 수행평가",
+      dueDate: "2025-08-19",
+      createdDate: "2025-2-30",
     },
     {
-      content: "수학 공지\n시험범위: 5단원까지",
-      dueDate: "2025-06-28",
-      createdDate: "2025-06-21",
-    },
-    {
-      content: "과학 프로젝트 발표\n주제별 조별 발표 / 실험영상 포함",
-      dueDate: "2025-07-03",
-      createdDate: "2025-06-22",
+      content: "기말고사",
+      dueDate: "2025-08-19",
+      createdDate: "2025-1-30",
     },
   ];
 

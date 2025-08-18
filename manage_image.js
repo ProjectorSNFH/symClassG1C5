@@ -3,10 +3,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const data = [
     {
-      fileDisplay: "기타 과제 모음",
-      fileName: "task_pack.zip",
+      fileDisplay: "학급 사진 모음",
+      fileName: "classPhotos.zip",
       uploader: "이재원",
-      uploadDate: "2025-06-18"
+      uploadDate: "2025-08-19"
     }
   ];
 

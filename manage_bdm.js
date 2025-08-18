@@ -3,11 +3,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const data = [
     {
-      fileDisplay: "공지사항 예시",
-      fileName: "example_notice.pdf",
+      content: "수학 수행평가 5단원",
       uploader: "이재원",
-      uploadDate: "2025-06-20",
-      dueDate: "2025-06-30"
+      uploadDate: "2025-08-19",
+      dueDate: "2025-2-30"
     }
   ];
 
@@ -38,8 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><input type="checkbox" data-index="${index}" disabled></td>
-        <td>${item.fileDisplay}</td>
-        <td>${item.fileName}</td>
+        <td>${item.content}</td>
         <td>${item.uploader}</td>
         <td>${item.uploadDate}</td>
         <td>${item.dueDate || ""}</td>
