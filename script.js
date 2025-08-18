@@ -94,33 +94,6 @@
       document.head.appendChild(script);
     }
 
-    const filename = location.pathname.split("/").pop();
-
-    switch (filename) {
-      case "DashBoard.html":
-        loadScript("DashData.js");
-        break;
-      case "board.html":
-        loadScript("boardData.js");
-        break;
-      case "datacenter.html":
-        loadScript("dataCenter.js");
-        break;
-      case "manage_audio.html":
-        loadScript("manage_audio.js");
-        break;
-      case "manage_image.html":
-        loadScript("manage_image.js");
-        break;
-      case "manage_other.html":
-        loadScript("manage_other.js");
-        break;
-      case "manage_bdm.html":
-        loadScript("manage_bdm.js");
-        loadScript("manage_bdm2.js");
-        break;
-    }
-
     document.body.style.visibility = "visible";
 
   } catch (err) {
